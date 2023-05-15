@@ -26,7 +26,7 @@ pipeline {
      stage('Build Docker Image') {
         steps {
             script {
-                sh 'docker build -t prajwalp7295/mynodejsapp-2.0 .'
+                sh 'docker build -t prajwalp7295/mynodejsapp-3.0 .'
             }
         }
      }
@@ -37,13 +37,13 @@ pipeline {
 		    withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerhubpwd')]) {
                     sh "docker login -u prajwalp7295 -p ${dockerhubpwd}"
                 }
-                sh "docker push prajwalp7295/mynodejsapp-2.0"
+                sh "docker push prajwalp7295/mynodejsapp-3.0"
             }
         }
      }
       stage('Run Docker Container') {
         steps {
-            sh 'docker run -d --name mynodejsapp2 -p 8888:8888 prajwalp7295/mynodejsapp-2.0'
+            sh 'docker run -d --name mynodejsapp3 -p 8888:8888 prajwalp7295/mynodejsapp-3.0'
         }
      }
   
